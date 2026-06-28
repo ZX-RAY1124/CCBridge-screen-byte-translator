@@ -21,6 +21,7 @@ class Byte_process:
         for self.i in self.Bt:
             self.translated.append(str(self.i))
         self.final_line =','.join(self.translated)
+        self.translated = []
         return self.final_line
 
     def translate_line(self):
@@ -29,5 +30,5 @@ class Byte_process:
 
     def write_file(self):
         for j in self.final:
-            j = j + '\n'
-            self.final_file.writelines(j)
+            j += '\n'
+            self.final_file.write(j)
