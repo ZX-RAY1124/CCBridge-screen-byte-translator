@@ -18,6 +18,5 @@ class Byte_process:
         return self.final
 
     def write_file(self):
-        self.final = '{' + self.final + '}'
         self.final_file.write(self.final)
 
