@@ -2,21 +2,32 @@ class Byte_process:
     def __init__(self):
         self.i = ''
         self.Bt = b''
-        self.final = ''
-        self.incoming_mes = open('input.txt', 'r', encoding="utf-8").readline()
+        self.final_line = ''
+        self.incoming_mes = open('input.txt', 'r', encoding="utf-8").readlines()
         self.final_file = open('output.txt', 'w', encoding="ascii")
+        self.process = []
         self.translated = []
+        self.final = []
 
     def read_origin(self):
-        return self.incoming_mes
+        for j in self.incoming_mes:
+            j = j.strip('\n')
+            self.process.append(j)
+        return self.process
 
-    def translate(self):
-        self.Bt = self.incoming_mes.encode("utf-8")
+    def translate(self, a):
+
+        self.Bt = a.encode("utf-8")
         for self.i in self.Bt:
             self.translated.append(str(self.i))
-        self.final =','.join(self.translated)
-        return self.final
+        self.final_line =','.join(self.translated)
+        return self.final_line
+
+    def translate_line(self):
+        for z in self.process:
+            self.final.append(self.translate(z))
 
     def write_file(self):
-        self.final_file.write(self.final)
-
+        for j in self.final:
+            j = j + '\n'
+            self.final_file.writelines(j)
